@@ -1,0 +1,323 @@
+body {
+    margin: 0;
+    background-color: rgba(49, 51, 56, 255);
+    width: 100vw;
+}
+
+#review-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    min-height: calc(100vh - 100px);
+    flex-wrap: wrap;
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    #review-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    #board-outer-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    #review-panel {
+        width: 100% !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+        height: auto !important;
+        min-height: 500px;
+    }
+}
+
+/* Mobile Layout: Board on top, scrollable content below */
+@media (max-width: 960px) {
+    #review-container {
+        flex-direction: column;
+        height: 100vh;
+        padding: 0;
+        gap: 0;
+        overflow: hidden;
+    }
+    
+    /* Board section - upper half */
+    #board-outer-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px;
+        height: 50vh;
+        min-height: 50vh;
+        max-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background-color: var(--secondary-color);
+    }
+    
+    #board {
+        width: min(90vw, 90vh * 0.5) !important;
+        height: min(90vw, 90vh * 0.5) !important;
+        max-width: min(90vw, 450px) !important;
+        max-height: min(90vw, 450px) !important;
+    }
+    
+    #evaluation-bar {
+        height: min(90vw, 90vh * 0.5) !important;
+        max-height: min(90vw, 450px) !important;
+        width: 30px !important;
+    }
+    
+    /* Review panel - lower half, scrollable */
+    #review-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        height: 50vh !important;
+        min-height: 50vh !important;
+        max-height: 50vh !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    #review-panel-main {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: calc(50vh - 70px) !important;
+        min-height: calc(50vh - 70px) !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS */
+        overscroll-behavior: contain !important; /* Prevent scroll chaining */
+    }
+    
+    #review-panel-wrapper {
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding-bottom: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+    }
+    
+    /* Navigation buttons at bottom - fixed */
+    #review-panel-toolbar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border-top: 2px solid var(--border-color);
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        z-index: 1000;
+        background-color: var(--secondary-color);
+        padding: 10px 5px;
+    }
+    
+    #review-panel-toolbar-buttons {
+        width: 100%;
+        max-width: 100%;
+        justify-content: space-around;
+        gap: 5px;
+    }
+    
+    #review-panel-toolbar-buttons i {
+        font-size: 24px;
+        padding: 8px;
+        flex: 1;
+        max-width: 60px;
+    }
+    
+    .footer {
+        display: none; /* Hide footer on mobile to save space */
+    }
+    
+    /* Hide author info on mobile to save space and avoid layout issues */
+    .author-info {
+        display: none !important;
+    }
+    
+    /* Allow horizontal scrolling to be disabled, but let child elements handle vertical scrolling */
+    body {
+        overflow-x: hidden;
+        /* Don't disable overflow-y - let the review-panel-main handle scrolling */
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1536px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    #board {
+        width: 550px !important;
+        height: 550px !important;
+    }
+
+    #board-outer-container {
+        height: auto !important;
+        margin: 15px;
+    }
+
+    #evaluation-bar {
+        height: 550px !important;
+        width: 40px !important;
+    }
+
+    #review-panel {
+        height: 90vh !important;
+        min-height: 600px;
+    }
+
+    #classification-message-container {
+        margin-top: 40px !important;
+    }
+
+    #engine-suggestions {
+        flex-direction: row !important;
+        margin-top: 18px !important;
+    }
+
+    #engine-suggestions-title {
+        margin: 0 !important;
+        padding: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 1030px) {
+    #board {
+        width: 500px !important;
+        height: 500px !important;
+    }
+
+    #evaluation-bar {
+        height: 500px !important;
+        width: 35px !important;
+    }
+
+    #board-outer-container {
+        margin: 10px;
+    }
+
+    #review-panel {
+        height: 90vh !important;
+        min-height: 550px;
+    }
+
+    #pgn {
+        margin-top: 5px !important;
+    }
+
+    #chess-site-username {
+        margin-top: 5px !important;
+    }
+
+    #fetch-account-games-button {
+        margin-top: 5px !important;
+    }
+
+    #load-type-dropdown {
+        margin-top: -8px !important;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #board {
+        width: min(85vw, 85vh * 0.5) !important;
+        height: min(85vw, 85vh * 0.5) !important;
+    }
+    
+    #evaluation-bar {
+        height: min(85vw, 85vh * 0.5) !important;
+        width: 25px !important;
+    }
+    
+    #review-panel-toolbar-buttons i {
+        font-size: 20px;
+        padding: 6px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    #board {
+        width: 272px !important;
+        height: 272px !important;
+    }
+
+    #board-outer-container {
+        height: 380px !important;
+    }
+
+    #evaluation-bar {
+        transform: scale(0.37);
+    }
+
+    #review-panel {
+        width: 19.6rem !important;
+    }
+
+    #review-panel-toolbar-buttons i {
+        font-size: 22px !important;
+    }
+
+    .accuracies {
+        font-size: 12px !important;
+    }
+
+    #engine-suggestions {
+        font-size: 9px !important;
+    }
+}
+
+.white {
+    color: white;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer a {
+    color: white;
+}
+
+/* Author info at bottom of page */
+.author-info {
+    margin-bottom: 30px;
+}

@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+*.txt
+src/test/reports
+/.vs
+.DS_Store
+*.log
