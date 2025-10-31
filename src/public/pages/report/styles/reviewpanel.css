@@ -88,10 +88,11 @@
         height: auto !important;
         min-height: auto !important;
         justify-content: flex-start !important;
-        padding-bottom: 140px !important; /* Extra padding to ensure content can scroll past toolbar */
+        padding-bottom: 280px !important; /* Extra padding for toolbar + author-info + spacing */
         display: flex !important; /* Keep flex to show all content */
         flex-direction: column !important;
         align-items: center !important;
+        flex-shrink: 0 !important; /* Prevent shrinking */
     }
     
     /* Ensure wrapper content is properly sized for scrolling */
@@ -99,6 +100,7 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+        flex-shrink: 0 !important; /* Prevent children from shrinking */
     }
     
     /* Make sure all content inside can be scrolled */
@@ -106,10 +108,34 @@
         overflow: visible !important;
     }
     
-    /* Ensure all content inside review-panel-main is visible */
-    #review-panel-main > * {
+    /* Ensure all input fields and buttons are visible */
+    #review-panel-title,
+    #load-type-dropdown-container,
+    #gameInputContainer,
+    #gameInputContainer2,
+    #review-button,
+    #big-depth-container {
         display: flex !important;
-        flex-direction: column !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        max-width: 90% !important;
+        margin: 5px auto !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Make sure dropdown is visible */
+    #load-type-dropdown {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Ensure textareas are visible */
+    #pgn,
+    #chess-site-username {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         width: 100% !important;
     }
 }

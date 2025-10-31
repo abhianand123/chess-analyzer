@@ -57,7 +57,7 @@ body {
         height: 100dvh;
         padding: 0;
         gap: 0;
-        overflow: visible; /* Allow scrolling */
+        overflow: hidden; /* Prevent page scrolling, let review-panel handle it */
         position: relative;
     }
     
@@ -106,15 +106,16 @@ body {
         display: flex !important;
         flex-direction: column !important;
         position: relative !important;
+        flex-shrink: 0 !important;
     }
     
     #review-panel-main {
         overflow-y: auto !important;
         overflow-x: hidden !important;
-        height: calc(50dvh - 70px) !important; /* Use dvh */
+        height: calc(50dvh - 70px) !important; /* Use dvh - account for toolbar */
         min-height: calc(50dvh - 70px) !important;
         max-height: calc(50dvh - 70px) !important;
-        flex: 1 !important;
+        flex: 1 1 auto !important; /* Allow flex to grow and shrink */
         display: flex !important; /* Keep flex to show content */
         flex-direction: column !important;
         position: relative !important;
@@ -128,12 +129,13 @@ body {
         width: 100% !important;
         height: auto !important;
         min-height: auto !important;
-        padding-bottom: 120px !important; /* Extra padding to ensure content can scroll past toolbar */
+        padding-bottom: 250px !important; /* Extra padding for toolbar + author-info + spacing */
         display: flex !important; /* Keep flex to show content */
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
         position: relative !important;
+        flex-shrink: 0 !important; /* Prevent shrinking */
     }
     
     /* Navigation buttons at bottom - fixed */
@@ -172,11 +174,54 @@ body {
         display: none; /* Hide footer on mobile to save space */
     }
     
-    /* Show author info on mobile (but user can hide if needed) */
+    /* Show author info on mobile - position it inside review-panel for scrolling */
     .author-info {
         display: block !important;
-        margin-top: 20px;
-        padding: 15px;
+        margin: 20px auto !important;
+        padding: 15px !important;
+        width: 90% !important;
+        max-width: 90% !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        z-index: 1 !important;
+        /* Ensure it's visible and not cut off */
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Make review-container accommodate author-info */
+    #review-container {
+        position: relative;
+    }
+    
+    /* On mobile, make author-info appear inside the scrollable review-panel area */
+    @media (max-width: 960px) {
+        #review-container .author-info {
+            /* Position it so it appears in the scrollable content */
+            margin-top: 0 !important;
+            margin-bottom: 20px !important;
+        }
+    }
+    
+    /* Ensure all content inside review-panel-wrapper is visible and accessible */
+    #review-panel-wrapper > * {
+        flex-shrink: 0 !important;
+        min-height: auto !important;
+    }
+    
+    /* Make sure input containers are visible */
+    #gameInputContainer,
+    #gameInputContainer2,
+    #load-type-dropdown-container,
+    #review-button,
+    #review-panel-title {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        max-width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 }
 
