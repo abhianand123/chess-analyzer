@@ -121,19 +121,25 @@ body {
         overscroll-behavior: contain !important; /* Prevent scroll chaining */
         touch-action: pan-y !important; /* Enable vertical touch scrolling */
         will-change: scroll-position !important; /* Optimize for scrolling */
+        /* Ensure background is visible */
+        background-color: var(--secondary-color) !important;
     }
     
     #review-panel-wrapper {
         width: 100% !important;
         height: auto !important;
         min-height: fit-content !important; /* Critical - prevents content collapse */
-        padding-bottom: 280px !important; /* Extra padding for toolbar + author-info + spacing */
+        padding: 10px 0 280px 0 !important; /* Top/bottom padding, extra for toolbar + author-info */
         display: flex !important; /* Keep flex for layout */
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
         position: relative !important;
         flex-shrink: 0 !important; /* Prevent shrinking */
+        /* Ensure content is visible */
+        visibility: visible !important;
+        opacity: 1 !important;
+        background-color: transparent !important;
     }
     
     /* Navigation buttons at bottom - fixed */
@@ -205,21 +211,45 @@ body {
     #review-panel-wrapper > * {
         flex-shrink: 0 !important;
         min-height: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 1 !important;
     }
     
-    /* Make sure input containers are visible */
+    /* Make sure input containers are visible - CRITICAL */
+    #review-panel-title,
+    #load-type-dropdown-container,
     #gameInputContainer,
     #gameInputContainer2,
-    #load-type-dropdown-container,
-    #review-button,
-    #review-panel-title {
+    #review-button {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
-        width: 100% !important;
+        width: 90% !important;
         max-width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        margin: 10px auto !important;
+        position: relative !important;
+        z-index: 2 !important;
+        background-color: transparent !important;
+    }
+    
+    /* Ensure textareas are visible */
+    #pgn,
+    #chess-site-username {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    /* Ensure dropdown is visible */
+    #load-type-dropdown {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 

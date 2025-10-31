@@ -107,7 +107,7 @@
         overflow: visible !important;
     }
     
-    /* Ensure all input fields and buttons are visible */
+    /* Ensure all input fields and buttons are visible - CRITICAL */
     #review-panel-title,
     #load-type-dropdown-container,
     #gameInputContainer,
@@ -117,16 +117,21 @@
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
-        width: 100% !important;
+        width: 90% !important;
         max-width: 90% !important;
-        margin: 5px auto !important;
+        margin: 10px auto !important;
         flex-shrink: 0 !important;
+        position: relative !important;
+        z-index: 2 !important;
     }
     
     /* Make sure dropdown is visible */
     #load-type-dropdown {
         display: block !important;
         visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 2 !important;
     }
     
     /* Ensure textareas are visible */
@@ -136,6 +141,17 @@
         visibility: visible !important;
         opacity: 1 !important;
         width: 100% !important;
+        position: relative !important;
+        z-index: 2 !important;
+        min-height: 40px !important;
+    }
+    
+    /* Ensure wrapper itself is positioned correctly */
+    #review-panel-wrapper {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
     }
 }
 
