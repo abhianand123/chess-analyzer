@@ -109,13 +109,14 @@ body {
     }
     
     #review-panel-main {
-        overflow-y: auto !important; /* Changed from scroll to auto */
+        overflow-y: auto !important;
         overflow-x: hidden !important;
         height: calc(50dvh - 70px) !important; /* Use dvh */
         min-height: calc(50dvh - 70px) !important;
         max-height: calc(50dvh - 70px) !important;
         flex: 1 !important;
-        display: block !important;
+        display: flex !important; /* Keep flex to show content */
+        flex-direction: column !important;
         position: relative !important;
         -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS - CRITICAL */
         overscroll-behavior: contain !important; /* Prevent scroll chaining */
@@ -128,8 +129,9 @@ body {
         height: auto !important;
         min-height: auto !important;
         padding-bottom: 120px !important; /* Extra padding to ensure content can scroll past toolbar */
-        display: block !important;
+        display: flex !important; /* Keep flex to show content */
         flex-direction: column !important;
+        align-items: center !important;
         justify-content: flex-start !important;
         position: relative !important;
     }
@@ -170,9 +172,11 @@ body {
         display: none; /* Hide footer on mobile to save space */
     }
     
-    /* Hide author info on mobile to save space and avoid layout issues */
+    /* Show author info on mobile (but user can hide if needed) */
     .author-info {
-        display: none !important;
+        display: block !important;
+        margin-top: 20px;
+        padding: 15px;
     }
 }
 
