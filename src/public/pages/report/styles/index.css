@@ -126,10 +126,10 @@ body {
         margin-top: 40px;
     }
 
-    /* Show author info on mobile */
+    /* Show author info on mobile - add bottom margin to clear fixed toolbar */
     .author-info {
         display: block !important;
-        margin: 20px auto;
+        margin: 20px auto 100px auto !important; /* Extra bottom margin to clear fixed toolbar */
         padding: 15px;
         width: 90%;
         max-width: 90%;
