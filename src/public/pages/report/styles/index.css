@@ -110,14 +110,12 @@ body {
     }
     
     #review-panel-main {
+        display: block !important; /* Fix collapsed content - CRITICAL */
         overflow-y: auto !important;
         overflow-x: hidden !important;
         height: calc(50dvh - 70px) !important; /* Use dvh - account for toolbar */
         min-height: calc(50dvh - 70px) !important;
         max-height: calc(50dvh - 70px) !important;
-        flex: 1 1 auto !important; /* Allow flex to grow and shrink */
-        display: flex !important; /* Keep flex to show content */
-        flex-direction: column !important;
         position: relative !important;
         -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS - CRITICAL */
         overscroll-behavior: contain !important; /* Prevent scroll chaining */
@@ -128,9 +126,9 @@ body {
     #review-panel-wrapper {
         width: 100% !important;
         height: auto !important;
-        min-height: auto !important;
-        padding-bottom: 250px !important; /* Extra padding for toolbar + author-info + spacing */
-        display: flex !important; /* Keep flex to show content */
+        min-height: fit-content !important; /* Critical - prevents content collapse */
+        padding-bottom: 280px !important; /* Extra padding for toolbar + author-info + spacing */
+        display: flex !important; /* Keep flex for layout */
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
