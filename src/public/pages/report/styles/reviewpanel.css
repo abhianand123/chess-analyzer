@@ -72,17 +72,25 @@
 /* Mobile: Ensure wrapper doesn't constrain content */
 @media (max-width: 960px) {
     #review-panel-main {
-        justify-content: flex-start !important;
-        align-items: center !important;
+        display: block !important;
         -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS */
         overscroll-behavior: contain !important; /* Prevent scroll chaining */
+        touch-action: pan-y !important; /* Enable vertical touch scrolling */
+        will-change: scroll-position; /* Optimize for scrolling */
     }
     
     #review-panel-wrapper {
         height: auto !important;
         min-height: auto !important;
         justify-content: flex-start !important;
-        padding-bottom: 100px !important; /* Extra padding to ensure content can scroll past toolbar */
+        padding-bottom: 120px !important; /* Extra padding to ensure content can scroll past toolbar */
+        display: block !important;
+    }
+    
+    /* Ensure wrapper content is properly sized for scrolling */
+    #review-panel-wrapper > * {
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 

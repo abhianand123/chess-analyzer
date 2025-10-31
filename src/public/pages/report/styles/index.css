@@ -91,32 +91,35 @@ body {
         border-left: none !important;
         border-right: none !important;
         border-bottom: none !important;
-        overflow: hidden !important;
+        overflow: visible !important;
         display: flex !important;
         flex-direction: column !important;
+        position: relative !important;
     }
     
     #review-panel-main {
-        overflow-y: auto !important;
+        overflow-y: scroll !important;
         overflow-x: hidden !important;
         height: calc(50vh - 70px) !important;
         min-height: calc(50vh - 70px) !important;
+        max-height: calc(50vh - 70px) !important;
         flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
+        display: block !important;
+        position: relative !important;
         -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS */
         overscroll-behavior: contain !important; /* Prevent scroll chaining */
+        touch-action: pan-y !important; /* Enable vertical touch scrolling */
     }
     
     #review-panel-wrapper {
         width: 100% !important;
         height: auto !important;
         min-height: auto !important;
-        padding-bottom: 20px !important;
+        padding-bottom: 100px !important; /* Extra padding to ensure content can scroll past toolbar */
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
+        position: relative !important;
     }
     
     /* Navigation buttons at bottom - fixed */
@@ -160,12 +163,16 @@ body {
         display: none !important;
     }
     
-    /* Allow horizontal scrolling to be disabled, but let child elements handle vertical scrolling */
+    /* Prevent body from scrolling, but allow child elements to scroll */
     body {
-        overflow-x: hidden;
-        /* Don't disable overflow-y - let the review-panel-main handle scrolling */
-        position: fixed;
+        overflow: hidden;
+        position: relative;
         width: 100%;
+        height: 100vh;
+    }
+    
+    html {
+        overflow: hidden;
         height: 100%;
     }
 }
