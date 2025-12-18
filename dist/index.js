@@ -19,15 +19,18 @@ dotenv_1.default.config();
 const api_1 = __importDefault(require("./api"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use("/static", express_1.default.static("dist/public"), express_1.default.static("src/public"));
+app.use("/static", express_1.default.static(path_1.default.join(__dirname, "public")));
 app.use("/api", api_1.default);
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.sendFile(path_1.default.resolve("src/public/pages/report/index.html"));
+    res.sendFile(path_1.default.join(__dirname, "public/pages/report/index.html"));
 }));
 app.get("/privacy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.sendFile(path_1.default.resolve("src/public/pages/privacy/index.html"));
+    res.sendFile(path_1.default.join(__dirname, "public/pages/privacy/index.html"));
 }));
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+exports.default = app;

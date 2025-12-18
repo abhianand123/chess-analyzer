@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "tsc && nodemon dist/index.js",
-    "build": "tsc",
+    "dev": "tsc && node copy-assets.js && nodemon dist/index.js",
+    "build": "tsc && node copy-assets.js",
     "test": "tsc && node dist/test/reports.js"
   },
   "devDependencies": {
