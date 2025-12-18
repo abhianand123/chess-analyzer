@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const node_fetch_1 = __importDefault(require("node-fetch"));
 const chess_js_1 = require("chess.js");
 const pgn_parser_1 = __importDefault(require("pgn-parser"));
 const analysis_1 = __importDefault(require("./lib/analysis"));
@@ -56,27 +55,9 @@ router.post("/parse", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     res.json({ positions });
 }));
 router.post("/report", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let { positions, captchaToken } = req.body;
-    if (!positions || !captchaToken) {
+    let { positions } = req.body;
+    if (!positions) {
         return res.status(400).json({ message: "Missing parameters." });
-    }
-    if (process.env.RECAPTCHA_SECRET) {
-        try {
-            let captchaResponse = yield (0, node_fetch_1.default)("https://www.google.com/recaptcha/api/siteverify", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captchaToken}`
-            });
-            let captchaResult = yield captchaResponse.json();
-            if (!captchaResult.success) {
-                return res.status(400).json({ message: "You must complete the CAPTCHA." });
-            }
-        }
-        catch (err) {
-            return res.status(500).json({ message: "Failed to verify CAPTCHA." });
-        }
     }
     try {
         var results = yield (0, analysis_1.default)(positions);

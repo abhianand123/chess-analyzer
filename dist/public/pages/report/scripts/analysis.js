@@ -30,8 +30,6 @@ function logAnalysisError(message) {
 function evaluate() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     return __awaiter(this, void 0, void 0, function* () {
-        $(".g-recaptcha").css("display", "none");
-        grecaptcha.reset();
         $("#report-cards").css("display", "none");
         $("#evaluation-progress-bar").css("display", "none");
         if (ongoingEvaluation)
@@ -140,14 +138,14 @@ function evaluate() {
                 clearInterval(stockfishManager);
                 logAnalysisInfo("Evaluation complete.");
                 $("#evaluation-progress-bar").val(100);
-                $(".g-recaptcha").css("display", "inline");
                 if (!document.hasFocus()) {
                     let snd = new Audio("static/media/ping.mp3");
                     snd.play();
                 }
-                $("#secondary-message").html("Please complete the CAPTCHA to continue.");
+                $("#secondary-message").html("");
                 evaluatedPositions = positions;
                 ongoingEvaluation = false;
+                report();
                 return;
             }
             for (let position of positions) {
@@ -226,7 +224,6 @@ function loadReportCards() {
 function report() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
-        $(".g-recaptcha").css("display", "none");
         $("#secondary-message").html("");
         $("#evaluation-progress-bar").attr("value", null);
         logAnalysisInfo("Generating report...");
@@ -244,7 +241,6 @@ function report() {
                         }
                         return pos;
                     }),
-                    captchaToken: grecaptcha.getResponse() || "none",
                 }),
             });
             let report = yield reportResponse.json();
